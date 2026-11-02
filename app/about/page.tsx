@@ -2,19 +2,32 @@ import SkillCard from "@/components/SkillCard";
 
 export default function About() {
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-bold mb-4">About Me</h2>
+    <main className="min-h-screen bg-slate-50 px-4 py-12 text-slate-900 sm:px-6 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-5xl">
+        <section className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold sm:text-5xl">
+            About Me
+          </h1>
 
-      <p className="text-lg text-gray-700">
-        I am a software testing professional and full-stack development student
-        learning Next.js, React, TypeScript, and modern web development
-        practices.
-      </p>
+          <p className="mx-auto max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
+            I am a software testing professional and full-stack development
+            student learning Next.js, React, TypeScript, and modern web
+            development practices.
+          </p>
+        </section>
 
-      <SkillCard
-        title="Software Testing"
-        description="Experience with manual and automated testing, quality assurance, and software validation."
-      />
+        <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <SkillCard
+            title="Software Testing"
+            description="Experience with manual and automated testing, quality assurance, and software validation."
+          />
+
+          <SkillCard
+            title="Full-Stack Development"
+            description="Developing modern web applications using Next.js, React, TypeScript, APIs, and responsive design."
+          />
+        </section>
+      </div>
     </main>
   );
 }

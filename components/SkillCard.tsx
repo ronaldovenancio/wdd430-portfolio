@@ -3,11 +3,19 @@ interface SkillCardProps {
   description: string;
 }
 
-export default function SkillCard({ title, description }: SkillCardProps) {
+export default function SkillCard({
+  title,
+  description,
+}: SkillCardProps) {
   return (
-    <article className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-4">
-      <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
-      <p className="mt-2 text-gray-700">{description}</p>
+    <article className="h-full rounded-xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <h3 className="mb-3 text-xl font-bold text-slate-900 sm:text-2xl">
+        {title}
+      </h3>
+
+      <p className="text-base leading-7 text-slate-600 sm:text-lg">
+        {description}
+      </p>
     </article>
   );
 }

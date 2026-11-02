@@ -19,17 +19,25 @@ const projects = [
 
 export default function Home() {
   return (
-    <main className="container mx-auto px-4 py-12">
-      <section className="text-center py-12">
-        <h1 className="text-4xl font-bold mb-4">My Portfolio</h1>
+      <main className="min-h-screen bg-slate-50 px-4 py-12 text-slate-900 sm:px-6 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-5xl">
+          <section className="mb-16 py-8 sm:py-12 lg:py-16">
+                <p className="mb-6 text-sm font-bold uppercase tracking-[0.3em] text-blue-600 sm:text-base">
+                  Portfolio
+                </p>
 
-        <p className="text-lg text-gray-700">
-          I am a full-stack development student learning Next.js and React. Here
-          are some of my recent projects.
-        </p>
-      </section>
+                <h1 className="max-w-4xl text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
+                  Welcome to my project portfolio.
+                </h1>
 
-      <ProjectList projects={projects} />
-    </main>
-  );
+                <p className="mt-8 max-w-4xl text-lg leading-8 text-slate-600 sm:text-xl">
+                  I build practical software projects focused on quality, problem solving,
+                  full-stack development, and clean user experiences.
+                </p>
+          </section>
+
+          <ProjectList projects={projects} />
+        </div>
+      </main>
+);
 }
