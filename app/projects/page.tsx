@@ -1,24 +1,34 @@
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  type: "opensource" | "school";
-  technologies: string[];
-  link?: string;
-}
+import Pagination from "@/components/Pagination";
+import ProjectSearch from "@/components/ProjectSearch";
+import {
+  fetchFilteredProjects,
+  fetchProjectsPages,
+} from "@/lib/projects-db";
 
 export const instant = false;
 
-export default async function ProjectsPage() {
-  const baseUrl =
-      process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000";
+export default async function ProjectsPage(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
+  const searchParams = await props.searchParams;
 
-    const response = await fetch(`${baseUrl}/api/projects`, {
-      cache: "no-store",
-    });
-  const projects: Project[] = await response.json();
+  const query = searchParams?.query?.trim() ?? "";
+
+  const parsedPage = Number(searchParams?.page);
+  const currentPage =
+    Number.isInteger(parsedPage) && parsedPage > 0
+      ? parsedPage
+      : 1;
+
+  const projects = await fetchFilteredProjects(
+    query,
+    currentPage
+  );
+
+  const totalPages = await fetchProjectsPages(query);
 
   return (
     <main className="px-4 py-12 sm:px-6">
@@ -26,6 +36,10 @@ export default async function ProjectsPage() {
         <h1 className="text-4xl font-bold text-slate-900">
           Projects Overview
         </h1>
+
+        <div className="mt-6">
+          <ProjectSearch />
+        </div>
 
         <div className="mt-8 space-y-6">
           {projects.map((project) => (
@@ -47,6 +61,8 @@ export default async function ProjectsPage() {
             </article>
           ))}
         </div>
+
+        <Pagination totalPages={totalPages} />
       </div>
     </main>
   );
